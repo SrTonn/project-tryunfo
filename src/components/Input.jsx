@@ -5,7 +5,7 @@ export default class Input extends React.Component {
   render() {
     const {
       name,
-      labelName = name,
+      labelName,
       value,
       onInputChange,
       type = 'text',
@@ -14,8 +14,8 @@ export default class Input extends React.Component {
 
     return (
       <label htmlFor={ name }>
-        {labelName}
-        {labelName.includes('Nome') ? <br /> : ''}
+        { name.replace('name', 'Nome') }
+        { labelName.includes('name') ? <br /> : '' }
         <input
           data-testid={ dataTestId }
           type={ type }

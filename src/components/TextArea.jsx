@@ -5,18 +5,19 @@ export default class TextArea extends React.Component {
   render() {
     const {
       name,
+      labelName,
       value,
-      onTextAreaChange,
+      onInputChange,
       dataTestId,
     } = this.props;
     return (
       <label htmlFor={ name }>
-        {name}
+        { labelName }
         <textarea
           data-testid={ dataTestId }
           id={ name }
           name={ name }
-          onChange={ onTextAreaChange }
+          onChange={ onInputChange }
           value={ value }
         />
       </label>
@@ -26,7 +27,8 @@ export default class TextArea extends React.Component {
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
+  labelName: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onTextAreaChange: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
   dataTestId: PropTypes.string.isRequired,
 };
