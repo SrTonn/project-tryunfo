@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Input from "./Input";
-import TextArea from "./TextArea";
-import Select from "./Select";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Input from './Input';
+import TextArea from './TextArea';
 
 export default class Form extends Component {
   render() {
@@ -19,11 +18,6 @@ export default class Form extends Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
-    const options = [
-      { value: "raro", labelName: "raro" },
-      { value: "normal", labelName: "normal" },
-      { value: "muito raro", labelName: "muito raro" },
-    ];
     return (
       <>
         {/* input tipo text */}
@@ -90,14 +84,19 @@ export default class Form extends Component {
         />
         <br />
 
-        <Select
-          dataTestId="rare-input"
-          name="cardRare"
-          labelCardName="Rarity"
-          options={ options }
-          value={ cardRare }
-          onInputChange={ onInputChange }
-        />
+        <label htmlFor="raridade">
+          Raridade:
+          <select
+            name="raridade"
+            data-testid="rare-input"
+            value={ cardRare }
+            onChange={ onInputChange }
+          >
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito raro</option>
+          </select>
+        </label>
         <br />
 
         <label htmlFor="super">
@@ -116,7 +115,7 @@ export default class Form extends Component {
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
-          type="submit" 
+          type="submit"
         >
           Save
         </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
+import Card from './components/Card';
 
 export default class App extends React.Component {
   constructor() {
@@ -14,11 +15,10 @@ export default class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: false,
-      valueTextArea: '',
     };
 
-    this.onInputChange = this.onInputChange.bind(this)
-    this.onSaveButtonClick = this.onSaveButtonClick.bind(this)
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -33,7 +33,7 @@ export default class App extends React.Component {
   }
 
   onSaveButtonClick() {
-    console.log('ativou a funcao onSaveButtonClick')
+    console.log('ativou a funcao onSaveButtonClick');
   }
 
   render() {
@@ -60,9 +60,19 @@ export default class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={isSaveButtonDisabled}
+          isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
+        />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
         />
       </div>
     );
