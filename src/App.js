@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
-import Card from './components/Card'
+import Card from './components/Card';
 
 export default class App extends React.Component {
   constructor() {
@@ -12,33 +12,57 @@ export default class App extends React.Component {
       cardAttr2: '',
       cardAttr3: '',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.checkAllConditions = this.checkAllConditions.bind(this);
   }
 
   onInputChange({ target }) {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    console.log('name=>', name);
-    console.log('value=>', value);
-    const checkAll = Object.entries(this.state).slice(0, -1)
-      .every(([key, value]) => key.includes('card') && value);
-    console.log('checkAll=>', checkAll);
-    console.log('array=>', Object.entries(this.state).slice(0, -1));
 
     this.setState(() => ({
       [name]: value,
-      isSaveButtonDisabled: !checkAll
-    }));
+    }), this.checkAllConditions);
   }
 
   onSaveButtonClick() {
     console.log('ativou a funcao onSaveButtonClick');
+  }
+
+  checkAllConditions() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+    const maxNumber = 90;
+    const maxSumNumber = 210;
+    const allConditions = [
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      +cardAttr1 >= 0 && +cardAttr1 <= maxNumber,
+      +cardAttr2 >= 0 && +cardAttr2 <= maxNumber,
+      +cardAttr3 >= 0 && +cardAttr3 <= maxNumber,
+      +cardAttr1 + +cardAttr2 + +cardAttr3 <= maxSumNumber,
+    ];
+
+    const xd = !allConditions.every((test) => test);
+
+    this.setState(() => ({
+      isSaveButtonDisabled: xd,
+    }));
   }
 
   render() {

@@ -11,15 +11,11 @@
         },
         "sourceType": "module"
     },
-    "overrides": [
-        {
-          "files": ["*.jsx", "*.js"]
-        }
-      ],
     "plugins": [
         "react"
     ], 
     "rules": {
-        "react/state-in-constructor": ["off"]
+        "react/state-in-constructor": ["off"],
+        "no-console": "warn"
     }
 }

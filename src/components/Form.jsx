@@ -90,11 +90,8 @@ export default class Form extends Component {
             name="cardRare"
             data-testid="rare-input"
             onChange={ onInputChange }
-            defaultValue="startInfo"
+            value={ cardRare }
           >
-            <option value="startInfo" disabled>
-              Selecione a raridade
-            </option>
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito raro</option>
