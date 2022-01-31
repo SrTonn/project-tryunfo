@@ -14,7 +14,9 @@ export default class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
+      allCards: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -32,7 +34,29 @@ export default class App extends React.Component {
   }
 
   onSaveButtonClick() {
-    this.setState(() => ({
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const newCard = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((prevState) => ({
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -40,7 +64,9 @@ export default class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
-    }));
+      hasTrunfo: cardTrunfo,
+      allCards: [...prevState.allCards, newCard],
+    }), this.checkAllConditions);
   }
 
   checkAllConditions() {
