@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
-import Card from './components/Card';
+import Card from './components/Card'
 
 export default class App extends React.Component {
   constructor() {
@@ -14,7 +14,7 @@ export default class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -26,10 +26,15 @@ export default class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     console.log('name=>', name);
     console.log('value=>', value);
+    const checkAll = Object.entries(this.state).slice(0, -1)
+      .every(([key, value]) => key.includes('card') && value);
+    console.log('checkAll=>', checkAll);
+    console.log('array=>', Object.entries(this.state).slice(0, -1));
 
-    this.setState({
+    this.setState(() => ({
       [name]: value,
-    });
+      isSaveButtonDisabled: !checkAll
+    }));
   }
 
   onSaveButtonClick() {

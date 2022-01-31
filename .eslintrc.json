@@ -11,6 +11,11 @@
         },
         "sourceType": "module"
     },
+    "overrides": [
+        {
+          "files": ["*.jsx", "*.js"]
+        }
+      ],
     "plugins": [
         "react"
     ], 
