@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
 import TextArea from './TextArea';
+import Select from './Select';
 
 export default class Form extends Component {
   render() {
@@ -18,6 +19,11 @@ export default class Form extends Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+    const options = [
+      { label: 'Normal', value: 'normal' },
+      { label: 'Raro', value: 'raro' },
+      { label: 'Muito raro', value: 'muito raro' },
+    ];
     return (
       <>
         {/* input tipo text */}
@@ -84,7 +90,7 @@ export default class Form extends Component {
         />
         <br />
 
-        <label htmlFor="cardRare">
+        {/* <label htmlFor="cardRare">
           Raridade:
           <select
             name="cardRare"
@@ -97,6 +103,15 @@ export default class Form extends Component {
             <option value="muito raro">Muito raro</option>
           </select>
         </label>
+        <br /> */}
+        <Select
+          name="cardRare"
+          labelName="Raridade"
+          dataTestId="rare-input"
+          onInputChange={ onInputChange }
+          value={ cardRare }
+          options={ options }
+        />
         <br />
 
         <label htmlFor="super">
