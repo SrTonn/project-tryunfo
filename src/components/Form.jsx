@@ -16,7 +16,6 @@ export default class Form extends Component {
       cardRare,
       cardTrunfo,
       hasTrunfo,
-      isSuperTrunfoDisabled,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -123,7 +122,7 @@ export default class Form extends Component {
               data-testid="trunfo-input"
               type="checkbox"
               name="cardTrunfo"
-              disabled={ isSuperTrunfoDisabled }
+              disabled={ hasTrunfo }
               onChange={ onInputChange }
               checked={ cardTrunfo }
             />
@@ -154,7 +153,6 @@ Form.propTypes = {
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
   hasTrunfo: PropTypes.bool.isRequired,
-  isSuperTrunfoDisabled: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

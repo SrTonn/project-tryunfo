@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import AllCards from './components/AllCards';
 
 export default class App extends React.Component {
   constructor() {
@@ -108,9 +109,10 @@ export default class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card
-          { ...this.state }
-        />
+        <h2>Pré visualização</h2>
+        <Card { ...this.state } />
+        <h2>Todas as cartas</h2>
+        <AllCards { ...this.state } />
       </div>
     );
   }
