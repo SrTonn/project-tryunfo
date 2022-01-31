@@ -66,10 +66,10 @@ export default class App extends React.Component {
       +cardAttr1 + +cardAttr2 + +cardAttr3 <= maxSumNumber,
     ];
 
-    const xd = !allConditions.every((test) => test);
+    const checkConditions = !allConditions.every((test) => test);
 
     this.setState(() => ({
-      isSaveButtonDisabled: xd,
+      isSaveButtonDisabled: checkConditions,
     }));
   }
 
