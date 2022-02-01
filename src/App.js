@@ -4,6 +4,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import Input from './components/Input';
 import AllCards from './components/AllCards';
+import Select from './components/Select';
 
 export default class App extends React.Component {
   constructor() {
@@ -21,6 +22,7 @@ export default class App extends React.Component {
       isSaveButtonDisabled: true,
       allCards: [],
       searchCard: '',
+      searchRare: 'todas',
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -104,7 +106,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { searchCard } = this.state;
+    const { searchCard, searchRare } = this.state;
+    const options = [
+      { label: 'Todas', value: 'todas' },
+      { label: 'Normal', value: 'normal' },
+      { label: 'Raro', value: 'raro' },
+      { label: 'Muito raro', value: 'muito raro' },
+    ];
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -123,6 +131,13 @@ export default class App extends React.Component {
           name="searchCard"
           value={ searchCard }
           onInputChange={ this.onInputChange }
+        />
+        <Select
+          name="searchRare"
+          dataTestId="rare-filter"
+          onInputChange={ this.onInputChange }
+          value={ searchRare }
+          options={ options }
         />
         <AllCards { ...this.state } onRemoveButtonClick={ this.onRemoveButtonClick } />
       </div>

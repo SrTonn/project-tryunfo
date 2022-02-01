@@ -33,9 +33,13 @@ export default class Select extends React.Component {
   }
 }
 
+Select.defaultProps = {
+  labelName: '',
+};
+
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  labelName: PropTypes.string.isRequired,
+  labelName: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
     value: PropTypes.string,

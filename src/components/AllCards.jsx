@@ -4,17 +4,24 @@ import Card from './Card';
 
 export default class AllCards extends Component {
   render() {
-    const { allCards, onRemoveButtonClick, searchCard } = this.props;
+    const { allCards, onRemoveButtonClick, searchCard, searchRare } = this.props;
     return (
       <>
-        {allCards.filter(({ cardName }) => cardName.includes(searchCard)).map((card) => (
-          <Card
-            { ...card }
-            key={ card.id }
-            hasRemoveButton
-            onRemoveButtonClick={ onRemoveButtonClick }
-          />
-        ))}
+        {allCards
+          .filter(({ cardName, cardRare }) => {
+            if (searchRare === 'todas') {
+              return cardName.includes(searchCard);
+            }
+            return cardRare === searchRare && cardName.includes(searchCard);
+          })
+          .map((card) => (
+            <Card
+              { ...card }
+              key={ card.id }
+              hasRemoveButton
+              onRemoveButtonClick={ onRemoveButtonClick }
+            />
+          ))}
       </>
     );
   }
@@ -32,5 +39,6 @@ AllCards.propTypes = {
     cardTrunfo: PropTypes.bool.isRequired,
   })).isRequired,
   searchCard: PropTypes.string.isRequired,
+  searchRare: PropTypes.string.isRequired,
   onRemoveButtonClick: PropTypes.func.isRequired,
 };
