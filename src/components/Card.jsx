@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 export default class Card extends Component {
   render() {
     const {
+      id,
       cardName,
       cardDescription,
       cardAttr1,
@@ -12,6 +13,8 @@ export default class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasRemoveButton,
+      onRemoveButtonClick,
     } = this.props;
     return (
       <>
@@ -23,12 +26,28 @@ export default class Card extends Component {
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{ cardRare }</p>
         {cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p>}
+        {hasRemoveButton && (
+          <button
+            data-testid="delete-button"
+            type="button"
+            onClick={ onRemoveButtonClick }
+            id={ id }
+          >
+            Excluir
+          </button>)}
       </>
     );
   }
 }
 
+Card.defaultProps = {
+  id: '',
+  hasRemoveButton: false,
+  onRemoveButtonClick: () => {},
+};
+
 Card.propTypes = {
+  id: PropTypes.string,
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -37,4 +56,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  hasRemoveButton: PropTypes.bool,
+  onRemoveButtonClick: PropTypes.func,
 };

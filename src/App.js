@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 import Form from './components/Form';
 import Card from './components/Card';
 import AllCards from './components/AllCards';
@@ -23,6 +24,8 @@ export default class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.checkAllConditions = this.checkAllConditions.bind(this);
+    this.onRemoveButtonClick = this.onRemoveButtonClick.bind(this);
+    this.updateSuperTrunfo = this.updateSuperTrunfo.bind(this);
   }
 
   onInputChange({ target }) {
@@ -35,26 +38,11 @@ export default class App extends React.Component {
   }
 
   onSaveButtonClick() {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
+    const { hasTrunfo, isSaveButtonDisabled, allCard, ...rest } = this.state;
 
     const newCard = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
+      ...rest,
+      id: uuid(),
     };
 
     this.setState((prevState) => ({
@@ -65,9 +53,22 @@ export default class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
-      hasTrunfo: cardTrunfo,
+      hasTrunfo: rest.cardTrunfo,
       allCards: [...prevState.allCards, newCard],
     }), this.checkAllConditions);
+  }
+
+  onRemoveButtonClick({ target }) {
+    this.setState(({ allCards }) => ({
+      allCards: allCards.filter((card) => (card.id !== target.id)),
+    }), this.updateSuperTrunfo);
+  }
+
+  updateSuperTrunfo() {
+    this.setState(({ allCards }) => ({
+      cardTrunfo: false,
+      hasTrunfo: allCards.some((card) => card.cardTrunfo),
+    }));
   }
 
   checkAllConditions() {
@@ -112,7 +113,7 @@ export default class App extends React.Component {
         <h2>Pré visualização</h2>
         <Card { ...this.state } />
         <h2>Todas as cartas</h2>
-        <AllCards { ...this.state } />
+        <AllCards { ...this.state } onRemoveButtonClick={ this.onRemoveButtonClick } />
       </div>
     );
   }

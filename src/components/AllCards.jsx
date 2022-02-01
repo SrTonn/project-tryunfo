@@ -4,13 +4,15 @@ import Card from './Card';
 
 export default class AllCards extends Component {
   render() {
-    const { allCards } = this.props;
+    const { allCards, onRemoveButtonClick } = this.props;
     return (
       <>
-        {allCards.map((card, index) => (
+        {allCards.map((card) => (
           <Card
             { ...card }
-            key={ index }
+            key={ card.id }
+            hasRemoveButton
+            onRemoveButtonClick={ onRemoveButtonClick }
           />
         ))}
       </>
@@ -29,4 +31,5 @@ AllCards.propTypes = {
     cardRare: PropTypes.string.isRequired,
     cardTrunfo: PropTypes.bool.isRequired,
   })).isRequired,
+  onRemoveButtonClick: PropTypes.func.isRequired,
 };
