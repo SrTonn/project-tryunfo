@@ -2,6 +2,7 @@ import React from 'react';
 import uuid from 'react-uuid';
 import Form from './components/Form';
 import Card from './components/Card';
+import Input from './components/Input';
 import AllCards from './components/AllCards';
 
 export default class App extends React.Component {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       allCards: [],
+      searchCard: '',
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -102,6 +104,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { searchCard } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -113,6 +116,14 @@ export default class App extends React.Component {
         <h2>Pré visualização</h2>
         <Card { ...this.state } />
         <h2>Todas as cartas</h2>
+        <Input
+          { ...this.state }
+          dataTestId="name-filter"
+          labelName="Filtros de busca"
+          name="searchCard"
+          value={ searchCard }
+          onInputChange={ this.onInputChange }
+        />
         <AllCards { ...this.state } onRemoveButtonClick={ this.onRemoveButtonClick } />
       </div>
     );
