@@ -23,6 +23,7 @@ export default class App extends React.Component {
       allCards: [],
       searchCard: '',
       searchRare: 'todas',
+      searchTrunfo: false,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -57,6 +58,7 @@ export default class App extends React.Component {
       cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
+      cardTrunfo: false,
       hasTrunfo: rest.cardTrunfo,
       allCards: [...prevState.allCards, newCard],
     }), this.checkAllConditions);
@@ -106,7 +108,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { searchCard, searchRare } = this.state;
+    const { searchCard, searchRare, searchTrunfo } = this.state;
     const options = [
       { label: 'Todas', value: 'todas' },
       { label: 'Normal', value: 'normal' },
@@ -132,6 +134,7 @@ export default class App extends React.Component {
           value={ searchCard }
           onInputChange={ this.onInputChange }
         />
+        <br />
         <Select
           name="searchRare"
           dataTestId="rare-filter"
@@ -139,6 +142,17 @@ export default class App extends React.Component {
           value={ searchRare }
           options={ options }
         />
+        <br />
+        <label htmlFor="searchTrunfo">
+          <input
+            name="searchTrunfo"
+            type="checkbox"
+            data-testid="trunfo-filter"
+            onChange={ this.onInputChange }
+            checked={ searchTrunfo }
+          />
+          Super Trybe Trunfo
+        </label>
         <AllCards { ...this.state } onRemoveButtonClick={ this.onRemoveButtonClick } />
       </div>
     );

@@ -91,20 +91,6 @@ export default class Form extends Component {
         />
         <br />
 
-        {/* <label htmlFor="cardRare">
-          Raridade:
-          <select
-            name="cardRare"
-            data-testid="rare-input"
-            onChange={ onInputChange }
-            value={ cardRare }
-          >
-            <option value="normal">Normal</option>
-            <option value="raro">Raro</option>
-            <option value="muito raro">Muito raro</option>
-          </select>
-        </label>
-        <br /> */}
         <Select
           name="cardRare"
           labelName="Raridade"
